@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>KOMATSU POC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <form action="/" method="post">
+          <label class="label">JSON</label>
+          <p class="control">
+            <textarea name="json" class="textarea" placeholder="Textarea"></textarea>
+          </p>
+          <p class="control">
+            <input type="submit" class="button is-primary" />
+            <input type="reset" class="button is-link" />
+          </p>
+        </form>
+
+        <%= yield %>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
