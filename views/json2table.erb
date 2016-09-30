@@ -1,5 +1,18 @@
-<table class="table">
-  <%= print_keys(@hash) %>
-</table>
 
-<string><%= @hash %></string>
+<section class="section">
+  <div class="notification">
+    <table class="table">
+      <%= print_keys(@hash) %>
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Original: <%= @hash %>
+      </p>
+    </div>
+  </div>
+</footer>

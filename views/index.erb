@@ -1,2 +1,17 @@
 
-please input
+<% if @error %>
+<section class="section">
+  <div class="container">
+    <div class="notification">
+      <article class="message is-danger">
+        <div class="message-header">
+          Error
+        </div>
+        <div class="message-body">
+          <%= @error %>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<% end %>
