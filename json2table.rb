@@ -4,47 +4,16 @@
 require "sinatra"
 require "json"
 
-# JSON テストデータ
-=begin
-test_json = '{"widget": {
-"debug": "on",
-"window": {
-"title": "Sample Konfabulator Widget",
-"name": "main_window",
-"width": 500,
-"height": 500
-},
-"image": {
-"src": "Images/Sun.png",
-"name": "sun1",
-"hOffset": 250,
-"vOffset": 250,
-"alignment": "center"
-},
-"text": {
-"data": "Click Here",
-"size": 36,
-"style": "bold",
-"name": "text1",
-"hOffset": 250,
-"vOffset": 100,
-"alignment": "center",
-"onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
-}
-}}'
-=end
+VERSION = "0.22"
 
 get '/' do
   erb :index
 end
 
 post '/' do
-  # json  = JSON.dump(params['json'])
   @hash = JSON.parse(params['json'], quirks_mode: true)
   erb :json2table
 end
-
-# test_hash = JSON.parse(test_json)
 
 def print_keys(hash, res = "")
 

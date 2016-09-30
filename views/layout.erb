@@ -10,10 +10,21 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
+        <div class="columns">
+          <div class="column">
+            json to table
+          </div>
+          <div class="column">
+            version <%= VERSION %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
         <form action="/" method="post">
           <label class="label">JSON</label>
           <p class="control">
-            <textarea name="json" class="textarea" placeholder="Textarea"></textarea>
+            <textarea name="json" class="textarea" placeholder="json data"></textarea>
           </p>
           <p class="control">
             <input type="submit" class="button is-primary" />
