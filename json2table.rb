@@ -9,27 +9,27 @@ require "json"
 test_json = '{"widget": {
 "debug": "on",
 "window": {
-  "title": "Sample Konfabulator Widget",
-  "name": "main_window",
-  "width": 500,
-  "height": 500
+"title": "Sample Konfabulator Widget",
+"name": "main_window",
+"width": 500,
+"height": 500
 },
 "image": {
-  "src": "Images/Sun.png",
-  "name": "sun1",
-  "hOffset": 250,
-  "vOffset": 250,
-  "alignment": "center"
+"src": "Images/Sun.png",
+"name": "sun1",
+"hOffset": 250,
+"vOffset": 250,
+"alignment": "center"
 },
 "text": {
-  "data": "Click Here",
-  "size": 36,
-  "style": "bold",
-  "name": "text1",
-  "hOffset": 250,
-  "vOffset": 100,
-  "alignment": "center",
-  "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
+"data": "Click Here",
+"size": 36,
+"style": "bold",
+"name": "text1",
+"hOffset": 250,
+"vOffset": 100,
+"alignment": "center",
+"onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
 }
 }}'
 =end
@@ -39,27 +39,34 @@ get '/' do
 end
 
 post '/' do
-  @hash = JSON.parse(params['json'])
+  # json  = JSON.dump(params['json'])
+  @hash = JSON.parse(params['json'], quirks_mode: true)
   erb :json2table
 end
 
 # test_hash = JSON.parse(test_json)
 
 def print_keys(hash, res = "")
+
   hash.each do |key, val|
-    if val.is_a?(Hash) then
-      # puts "#{'　' * (nest * 3)} #{key}</br>"
-      # puts "<tr><td>#{key}</td></tr>\n<tr><td>\n<table>"
-      res += "<tr><th>#{key}</th><th><table class=\"table is-bordered\">"
+    if val.is_a?(Hash)
+      res += "<tr><td>#{key}</td><td><table class=\"table is-bordered\">"
       res = print_keys(val, res)
-      res += "</th></table>"
-      # puts "</td></tr>\n</table>"
-      # puts '</div>'
+      res += "</table></td></tr>"
+    elsif val.is_a?(Array)
+      res += "<tr><td rowspan=\"#{val.count+1}\">#{key}</td>"
+      res = print_keys(val, res)
+      res += "</tr>"
+    elsif key.is_a?(Hash) && val.nil?
+      res += "<tr><td><table class=\"table is-bordered\">"
+      res = print_keys(key, res)
+      res += "</table></td></tr>"
+    elsif val.nil?
+      res += "<tr><td>#{key}</td></tr>"
     else
       res += "<tr><td>#{key}</td><td>#{val}</td></tr>"
-      # puts "#{'　' * (nest * 3)} #{key}: #{val}</br>"
-      # puts "<div class=\"columns\">\n<div class=\"column\">#{key}</div>\n<div class=\"column\">#{val}</div>\n</div>"
     end
   end
+
   return res
 end
