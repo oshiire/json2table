@@ -4,7 +4,7 @@
 require "sinatra"
 require "json"
 
-VERSION = "0.28"
+VERSION = "0.30"
 
 get '/' do
   erb :index
@@ -23,14 +23,16 @@ end
 def print_keys(hash, res = "")
 
   hash.each do |key, val|
-    if val.is_a?(Hash)
+    if val.is_a?(Hash) || val.is_a?(Array)
       res += "<tr><td>#{key}</td><td><table class=\"table is-bordered\">"
       res = print_keys(val, res)
       res += "</table></td></tr>"
+=begin
     elsif val.is_a?(Array)
       res += "<tr><td rowspan=\"#{val.count+1}\">#{key}</td>"
       res = print_keys(val, res)
       res += "</tr>"
+=end
     elsif key.is_a?(Hash) && val.nil?
       res += "<tr><td><table class=\"table is-bordered\">"
       res = print_keys(key, res)
