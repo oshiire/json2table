@@ -1,25 +1,3 @@
-#!/usr/bin/env ruby
-# coding: utf-8
-
-require "sinatra"
-require "json"
-
-VERSION = "0.30"
-
-get '/' do
-  erb :index
-end
-
-post '/' do
-  begin
-    @hash = JSON.parse(params['json'], quirks_mode: true)
-    erb :json2table
-  rescue JSON::ParserError => e
-    @error = e
-    erb :index
-  end
-end
-
 def print_keys(hash, res = "")
 
   hash.each do |key, val|

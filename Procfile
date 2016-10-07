@@ -1,1 +1,1 @@
-web: bundle exec ruby json2table.rb
+web: bundle exec ruby app.rb
