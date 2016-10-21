@@ -25,6 +25,6 @@ post '/' do
   end
 end
 
-get '/20161021' do
-  erb :20161021
+get '/handson' do
+  erb :handson
 end
