@@ -24,3 +24,7 @@ post '/' do
     erb :index
   end
 end
+
+get '/20161021' do
+  erb :20161021
+end
