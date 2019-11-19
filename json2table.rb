@@ -4,7 +4,7 @@
 require "sinatra"
 require "json"
 
-VERSION = "0.28"
+VERSION = "0.31"
 
 get '/' do
   erb :index
