@@ -4,5 +4,5 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "sinatra"
+gem "sinatra", ">= 2.0.2"
 gem "rspec"
