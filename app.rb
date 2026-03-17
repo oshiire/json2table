@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
-# coding: utf-8
+# frozen_string_literal: true
 
 require "sinatra"
 require "json"
-require "./helpers/json2table.rb"
+require_relative "helpers/json2table"
 
 VERSION = (File::stat(__FILE__).mtime.to_i/60).to_s
 

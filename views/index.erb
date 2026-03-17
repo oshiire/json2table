@@ -8,7 +8,7 @@
           Error
         </div>
         <div class="message-body">
-          <%= @error %>
+          <%= Rack::Utils.escape_html(@error.to_s) %>
         </div>
       </article>
     </div>

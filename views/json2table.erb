@@ -11,7 +11,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        Original: <%= @hash %>
+        Original: <%= Rack::Utils.escape_html(@hash.to_s) %>
       </p>
     </div>
   </div>

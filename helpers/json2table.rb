@@ -1,26 +1,27 @@
-def print_keys(hash, res = "")
+# frozen_string_literal: true
 
+require "rack/utils"
+
+def h(text)
+  Rack::Utils.escape_html(text.to_s)
+end
+
+def print_keys(hash, res = "")
   hash.each do |key, val|
     if val.is_a?(Hash) || val.is_a?(Array)
-      res += "<tr><td>#{key}</td><td><table class=\"table is-bordered\">"
+      res += "<tr><td>#{h(key)}</td><td><table class=\"table is-bordered\">"
       res = print_keys(val, res)
       res += "</table></td></tr>"
-=begin
-    elsif val.is_a?(Array)
-      res += "<tr><td rowspan=\"#{val.count+1}\">#{key}</td>"
-      res = print_keys(val, res)
-      res += "</tr>"
-=end
     elsif key.is_a?(Hash) && val.nil?
       res += "<tr><td><table class=\"table is-bordered\">"
       res = print_keys(key, res)
       res += "</table></td></tr>"
     elsif val.nil?
-      res += "<tr><td>#{key}</td></tr>"
+      res += "<tr><td>#{h(key)}</td></tr>"
     else
-      res += "<tr><td>#{key}</td><td>#{val}</td></tr>"
+      res += "<tr><td>#{h(key)}</td><td>#{h(val)}</td></tr>"
     end
   end
 
-  return res
+  res
 end
