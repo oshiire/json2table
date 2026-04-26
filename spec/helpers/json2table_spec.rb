@@ -44,6 +44,30 @@ RSpec.describe "#print_keys" do
       expect(html).to include("<table")
       expect(html).to include("<td>nested</td><td>val</td>")
     end
+
+    it "renders array-as-key with nil value as nested table" do
+      # Top-level Array#each yields each element. Destructured as |key, val|,
+      # an inner array of length 1 where the element is itself an Array makes
+      # key = [...], val = nil — the M3 case the original branch missed.
+      input = [[[1, 2]], [[3, 4]]]
+      html = print_keys(input)
+      expect(html).to include("<table")
+      expect(html).to include("<td>1</td>")
+      expect(html).to include("<td>2</td>")
+      expect(html).to include("<td>3</td>")
+      expect(html).to include("<td>4</td>")
+      # Pre-fix this rendered the array's to_s like "[1, 2]" inside a single <td>.
+      expect(html).not_to match(/<td>\[\d/)
+    end
+  end
+
+  describe "performance" do
+    it "renders 20000 flat keys in well under a second (linear-time guard)" do
+      require "benchmark"
+      hash = (1..20_000).to_h { |i| ["k#{i}", "v#{i}"] }
+      elapsed = Benchmark.realtime { print_keys(hash) }
+      expect(elapsed).to be < 0.5
+    end
   end
 
   describe "XSS prevention" do

@@ -13,6 +13,9 @@
 # Used by dotenv library to load environment variables.
 # .env
 
+# Local Claude Code settings (per-developer)
+.claude/settings.local.json
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history

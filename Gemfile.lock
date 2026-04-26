@@ -2,6 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.3.0)
+    bundler-audit (0.9.3)
+      bundler (>= 1.2.0)
+      thor (~> 1.0)
     diff-lcs (1.6.2)
     logger (1.7.0)
     mustermann (3.0.4)
@@ -42,12 +45,14 @@ GEM
       rack-protection (= 4.2.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
+    thor (1.5.0)
     tilt (2.7.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler-audit
   puma
   rack-test
   rackup (~> 2.3)
@@ -55,7 +60,7 @@ DEPENDENCIES
   sinatra
 
 RUBY VERSION
-   ruby 3.4.8p72
+   ruby 3.4.9p82
 
 BUNDLED WITH
    2.4.10
